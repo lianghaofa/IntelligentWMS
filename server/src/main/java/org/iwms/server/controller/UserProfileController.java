@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author leung
+ */
 @RestController
 public class UserProfileController {
 

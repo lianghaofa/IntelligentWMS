@@ -8,6 +8,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.ComponentScan;
 
 
+/**
+ * @author leung
+ */
 @SpringBootApplication
 @EnableConfigurationProperties
 @ComponentScan(basePackages = {"org.iwms"})

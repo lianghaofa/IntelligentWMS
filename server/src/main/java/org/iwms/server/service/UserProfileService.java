@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author leung
+ */
 @Service
 public class UserProfileService {
 

@@ -7,6 +7,9 @@ import org.iwms.server.model.UserProfile;
 
 import java.util.List;
 
+/**
+ * @author leung
+ */
 @Mapper
 public interface UserProfileMapper {
     @Select("SELECT * FROM user_profile")

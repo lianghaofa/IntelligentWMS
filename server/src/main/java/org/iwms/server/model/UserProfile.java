@@ -22,12 +22,12 @@ public class UserProfile {
     /**
      * OpenID
      */
-    private String openid;
+    private String openId;
 
     /**
      * 应用 ID
      */
-    private String appid;
+    private String appId;
 
     /**
      * 是否删除
@@ -79,11 +79,10 @@ public class UserProfile {
      */
     private Date updateTime = new Date();
 
-    // 构造函数
-    public UserProfile(String name, String openid, String appid, String tCode, String ip) {
+    public UserProfile(String name, String openId, String appId, String tCode, String ip) {
         this.name = name;
-        this.openid = openid;
-        this.appid = appid;
+        this.openId = openId;
+        this.appId = appId;
         this.tCode = tCode;
         this.ip = ip;
     }
