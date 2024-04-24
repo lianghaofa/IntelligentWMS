@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/server/pom.xml" />
+        <option value="$PROJECT_DIR$/report/pom.xml" />
+        <option value="$PROJECT_DIR$/server/goods/pom.xml" />
+        <option value="$PROJECT_DIR$/goods/pom.xml" />
+        <option value="$PROJECT_DIR$/supplier/pom.xml" />
+        <option value="$PROJECT_DIR$/driver/pom.xml" />
+        <option value="$PROJECT_DIR$/warehouse/pom.xml" />
+        <option value="$PROJECT_DIR$/stock/pom.xml" />
+        <option value="$PROJECT_DIR$/object-storage/pom.xml" />
+        <option value="$PROJECT_DIR$/common/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/server/goods/pom.xml" />
+        <option value="$PROJECT_DIR$/server/report/pom.xml" />
+      </set>
+    </option>
+    <option name="workspaceImportForciblyTurnedOn" value="true" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" default="true" project-jdk-name="azul-16" project-jdk-type="JavaSDK">
+    <output url="file://$USER_HOME$/Desktop/logs" />
+  </component>
+</project>

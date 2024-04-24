@@ -3,6 +3,7 @@ package org.iwms.server.service;
 import com.google.common.base.Strings;
 import org.iwms.server.mapper.UserProfileMapper;
 import org.iwms.server.model.UserProfile;
+import org.iwms.server.utils.CacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class UserProfileService {
 
     static final Logger logger = LoggerFactory.getLogger(UserProfileService.class);
     private final UserProfileMapper userProfileMapper;
+
+    @Autowired
+    private CacheManager cacheManager;
+
 
     @Autowired
     public UserProfileService(UserProfileMapper userProfileMapper) {
