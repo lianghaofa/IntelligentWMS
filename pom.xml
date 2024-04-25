@@ -20,6 +20,7 @@
         <module>stock</module>
         <module>supplier</module>
         <module>warehouse</module>
+        <module>company</module>
     </modules>
 
     <profiles>
