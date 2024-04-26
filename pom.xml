@@ -21,6 +21,7 @@
         <module>supplier</module>
         <module>warehouse</module>
         <module>company</module>
+        <module>customer</module>
     </modules>
 
     <profiles>

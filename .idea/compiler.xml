@@ -14,8 +14,10 @@
         <module name="object-storage" />
         <module name="report" />
         <module name="goods" />
+        <module name="company" />
         <module name="warehouse" />
         <module name="stock" />
+        <module name="customer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
