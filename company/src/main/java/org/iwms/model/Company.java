@@ -18,7 +18,7 @@ public class Company {
     // 公司经理
     private String companyManager;
     // 创建者
-    private String creater;
+    private String creator;
     // 用户ID
     private String openid;
     // 是否删除标签
