@@ -20,7 +20,7 @@ public class AsnListModel {
     // 供应商
     private String supplier;
     // 创建者
-    private String creater;
+    private String creator;
     // 条形码
     private String barCode;
     // 用户ID
