@@ -18,7 +18,7 @@ public class WareHouse {
     // 仓库管理员
     private String warehouseManager;
     // 创建者
-    private String creator;
+    private String creater;
     // 用户ID
     private String openid;
     // 是否删除标签，表示该仓库是否已被删除

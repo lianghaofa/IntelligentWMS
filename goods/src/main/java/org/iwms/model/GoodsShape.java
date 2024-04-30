@@ -9,7 +9,7 @@ public class GoodsShape {
     // 商品形状
     private String goodsShape;
     // 创建者
-    private String creator;
+    private String creater;
     // 用户ID
     private String openid;
     // 是否删除标签，表示该商品形状是否已被删除

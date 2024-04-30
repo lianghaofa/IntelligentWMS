@@ -33,7 +33,7 @@ public class CacheManager {
         Object data = guavaCache.getIfPresent(key);
         if (data == null) {
             // 如果 Guava 缓存中没有数据，则从 Redis 缓存中获取
-            data = redisTemplate.opsForValue().get(key);
+            // data = redisTemplate.opsForValue().get(key);
             if (data != null) {
                 // 将数据放入 Guava 缓存
                 guavaCache.put(key, data);
@@ -49,14 +49,14 @@ public class CacheManager {
         // 将数据放入 Guava 缓存
         guavaCache.put(key, value);
         // 将数据放入 Redis 缓存
-        redisTemplate.opsForValue().set(key, value);
+        // redisTemplate.opsForValue().set(key, value);
     }
 
     public void delete(String key) {
         // 从 Guava 缓存中删除数据
         guavaCache.invalidate(key);
         // 从 Redis 缓存中删除数据
-        redisTemplate.delete(key);
+        // redisTemplate.delete(key);
     }
 
     public void clearGuavaCache() {
@@ -66,6 +66,6 @@ public class CacheManager {
 
     public void clearRedisCache() {
         // 清空 Redis 缓存
-        redisTemplate.getConnectionFactory().getConnection().flushDb();
+        // redisTemplate.getConnectionFactory().getConnection().flushDb();
     }
 }

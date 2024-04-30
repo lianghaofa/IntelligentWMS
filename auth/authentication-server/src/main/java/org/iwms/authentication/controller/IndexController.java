@@ -1,6 +1,8 @@
 package org.iwms.authentication.controller;
 
 import cn.hutool.json.JSONUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,14 +21,16 @@ import java.util.stream.Collectors;
  */
 @Controller
 public class IndexController {
-
+    static final Logger logger = LoggerFactory.getLogger(IndexController.class);
     @GetMapping("/")
     public String root() {
+        logger.info("redirect:/index");
         return "redirect:/index";
     }
 
     @GetMapping("/index")
     public String index(Model model) {
+        logger.info("/index");
         Map<String, Object> map = new HashMap<>();
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

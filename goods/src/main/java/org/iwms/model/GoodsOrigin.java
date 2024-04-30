@@ -10,7 +10,7 @@ public class GoodsOrigin {
     // 商品颜色
     private String goodsColor;
     // 创建者
-    private String creator;
+    private String creater;
     // 用户ID
     private String openid;
     // 是否删除标签，表示该商品颜色是否已被删除

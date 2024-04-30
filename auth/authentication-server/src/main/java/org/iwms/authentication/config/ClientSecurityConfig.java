@@ -1,5 +1,8 @@
 package org.iwms.authentication.config;
 
+import org.iwms.authentication.controller.ResourceController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -13,12 +16,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
 public class ClientSecurityConfig {
-
+    static final Logger logger = LoggerFactory.getLogger(ClientSecurityConfig.class);
     /**
      * 安全配置
      */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        logger.info("securityFilterChain");
         http.authorizeHttpRequests(authorize ->
                         // 任何请求都需要认证
                         authorize.anyRequest().authenticated()

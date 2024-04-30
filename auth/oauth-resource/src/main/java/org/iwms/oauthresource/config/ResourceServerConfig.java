@@ -2,6 +2,8 @@ package org.iwms.oauthresource.config;
 
 import org.iwms.oauthresource.handler.UnAccessDeniedHandler;
 import org.iwms.oauthresource.handler.UnAuthenticationEntryPoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,9 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+/**
+ * @author leung
+ */
 @EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
 public class ResourceServerConfig {
+    static final Logger logger = LoggerFactory.getLogger(ResourceServerConfig.class);
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,6 +39,8 @@ public class ResourceServerConfig {
                         .antMatchers("/resource3").hasAuthority("SCOPE_profile")
                         // 放行请求
                         .antMatchers("/api/**").permitAll()
+                        // 放行静态资源
+                        .antMatchers("/**/*.ico").permitAll()
                         // 其他任何请求都需要认证
                         .anyRequest().authenticated())
                 // 异常处理器

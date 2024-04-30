@@ -10,7 +10,7 @@ public class GoodsClass {
     // 商品类别
     private String goodsClass;
     // 创建者
-    private String creator;
+    private String creater;
     // 用户ID
     private String openid;
     // 是否删除标签，表示该商品类别是否已被删除

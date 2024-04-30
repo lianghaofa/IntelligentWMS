@@ -44,7 +44,7 @@ public class Goods {
     // 商品价格
     private double goodsPrice;
     // 创建者
-    private String creator;
+    private String creater;
     // 条形码
     private String barCode;
     // 用户ID

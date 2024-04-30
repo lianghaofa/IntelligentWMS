@@ -7,6 +7,7 @@ import org.iwms.server.service.RedisService;
 import org.iwms.server.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +17,14 @@ import java.util.List;
  * @author leung
  */
 @RestController
+@RequestMapping("/auth")
 public class TestController {
 
 
+    @GetMapping("/hello")
+    public String sayHello(){
+        return "hello security";
+    }
 
     @Autowired
     private RedisService redisService;

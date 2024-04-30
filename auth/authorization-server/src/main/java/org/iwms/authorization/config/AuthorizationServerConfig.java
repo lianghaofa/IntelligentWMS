@@ -4,6 +4,8 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import org.iwms.authorization.support.password.OAuth2PasswordAuthenticationConverter;
 import org.iwms.authorization.support.password.OAuth2PasswordAuthenticationProvider;
 import org.iwms.authorization.utils.ReadKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -52,11 +54,14 @@ import com.nimbusds.jose.proc.SecurityContext;
  */
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
+
+    static final Logger logger = LoggerFactory.getLogger(AuthorizationServerConfig.class);
     private static final String CUSTOM_CONSENT_PAGE_URI = "/oauth2/consent";
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
+        logger.info("authorizationServerSecurityFilterChain");
         // 定义授权服务配置器
         OAuth2AuthorizationServerConfigurer configurer = new OAuth2AuthorizationServerConfigurer();
         configurer.tokenEndpoint(tokenEndpoint -> {

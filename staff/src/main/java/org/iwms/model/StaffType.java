@@ -12,7 +12,7 @@ public class StaffType {
     // 用户ID
     private String openid;
     // 创建者
-    private String creator;
+    private String creater;
     // 创建时间，记录了员工类型的创建时间
     private Date createTime;
     // 更新时间，记录了员工类型的最后更新时间

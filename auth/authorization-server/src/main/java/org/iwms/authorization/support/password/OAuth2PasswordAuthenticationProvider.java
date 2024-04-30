@@ -1,7 +1,8 @@
 package org.iwms.authorization.support.password;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,10 +27,12 @@ import java.util.Set;
 
 import static org.iwms.authorization.utils.OAuth2AuthenticationProviderUtils.getAuthenticatedClientElseThrowInvalidClient;
 
+/**
+ * @author leung
+ */
 public class OAuth2PasswordAuthenticationProvider implements AuthenticationProvider {
 
-    private static final Logger LOGGER = LogManager.getLogger(OAuth2PasswordAuthenticationProvider.class);
-
+    static final Logger logger = LoggerFactory.getLogger(OAuth2PasswordAuthenticationProvider.class);
     private static final String ERROR_URI = "https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.2.1";
 
     private final OAuth2AuthorizationService authorizationService;
@@ -58,7 +61,9 @@ public class OAuth2PasswordAuthenticationProvider implements AuthenticationProvi
         this.authenticationManager = authenticationManager;
     }
 
+    @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        logger.info("authenticate");
         // 类型转换
         OAuth2PasswordAuthenticationToken authenticationToken = (OAuth2PasswordAuthenticationToken) authentication;
         // 获取客户端认证信息
@@ -145,7 +150,7 @@ public class OAuth2PasswordAuthenticationProvider implements AuthenticationProvi
         // 保存授权
         this.authorizationService.save(authorization);
 
-        LOGGER.debug("returning OAuth2AccessTokenAuthenticationToken");
+        logger.debug("returning OAuth2AccessTokenAuthenticationToken");
         // 创建认证
         return new OAuth2AccessTokenAuthenticationToken(registeredClient, clientPrincipal, accessToken, refreshToken, Collections.emptyMap());
     }

@@ -10,7 +10,7 @@ public class GoodsBrand {
     // 商品品牌
     private String goodsBrand;
     // 创建者
-    private String creator;
+    private String creater;
     // 用户ID
     private String openid;
     // 是否删除标签，表示该商品品牌是否已被删除

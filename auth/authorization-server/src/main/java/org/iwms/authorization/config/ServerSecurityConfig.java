@@ -1,6 +1,8 @@
 package org.iwms.authorization.config;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -23,7 +25,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
 public class ServerSecurityConfig {
-
+    static final Logger logger = LoggerFactory.getLogger(ServerSecurityConfig.class);
     @Resource
     private DataSource dataSource;
 
@@ -32,6 +34,7 @@ public class ServerSecurityConfig {
      */
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        logger.info("defaultSecurityFilterChain");
         http
                 .authorizeHttpRequests(authorize -> authorize
                         // 配置放行的请求

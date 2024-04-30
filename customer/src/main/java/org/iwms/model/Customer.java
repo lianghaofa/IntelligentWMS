@@ -20,7 +20,7 @@ public class Customer {
     // 客户级别
     private long customerLevel;
     // 创建者
-    private String creator;
+    private String creater;
     // 用户ID
     private String openid;
     // 是否删除标签

@@ -30,6 +30,4 @@ public class UserProfileController {
     public void insertUserByName(Integer userId,String name) {
         userProfileService.insertUserByUserIdAndName(userId, name);
     }
-
-
 }

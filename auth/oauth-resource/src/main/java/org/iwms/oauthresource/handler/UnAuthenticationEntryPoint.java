@@ -3,6 +3,8 @@ package org.iwms.oauthresource.handler;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.iwms.oauthresource.utils.RespJson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
@@ -21,17 +23,17 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class UnAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-
+    static final Logger logger = LoggerFactory.getLogger(UnAuthenticationEntryPoint.class);
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         if (authException instanceof InvalidBearerTokenException) {
-            //log.info("Token 登录失效");
+            logger.info("Token 登录失效");
         }
 
         if (response.isCommitted()) {
             return;
         }
-
+        logger.info("401, 未认证");
         // 401, 未认证
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setStatus(HttpServletResponse.SC_ACCEPTED);

@@ -1,11 +1,9 @@
 package org.iwms.server.service;
 
-import org.iwms.server.WebApplication;
 import org.iwms.server.utils.CacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**

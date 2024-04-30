@@ -1,9 +1,10 @@
 package org.iwms.objectstorage.util;
 
+import lombok.RequiredArgsConstructor;
 import org.iwms.objectstorage.configure.MinioProperties;
 import io.minio.*;
 import io.minio.errors.*;
-import lombok.RequiredArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

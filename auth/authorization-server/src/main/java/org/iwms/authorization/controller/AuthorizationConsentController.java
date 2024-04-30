@@ -1,5 +1,7 @@
 package org.iwms.authorization.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsent;
@@ -21,7 +23,7 @@ import java.util.*;
 @Controller
 public class AuthorizationConsentController {
 
-
+    static final Logger logger = LoggerFactory.getLogger(AuthorizationConsentController.class);
     private final RegisteredClientRepository registeredClientRepository;
     private final OAuth2AuthorizationConsentService authorizationConsentService;
 
@@ -36,6 +38,7 @@ public class AuthorizationConsentController {
                           @RequestParam(OAuth2ParameterNames.CLIENT_ID) String clientId,
                           @RequestParam(OAuth2ParameterNames.SCOPE) String scope,
                           @RequestParam(OAuth2ParameterNames.STATE) String state) {
+        logger.info("授权");
         // 要批准的范围和以前批准的范围
         Set<String> scopesToApprove = new HashSet<>();
         Set<String> previouslyApprovedScopes = new HashSet<>();

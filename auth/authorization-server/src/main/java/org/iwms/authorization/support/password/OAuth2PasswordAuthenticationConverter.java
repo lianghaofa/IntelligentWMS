@@ -1,7 +1,10 @@
 package org.iwms.authorization.support.password;
 
 
+import org.iwms.authorization.config.ServerSecurityConfig;
 import org.iwms.authorization.utils.OAuth2EndpointUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -18,11 +21,12 @@ import java.util.*;
  * @author leung
  */
 public class OAuth2PasswordAuthenticationConverter implements AuthenticationConverter {
-
+    static final Logger logger = LoggerFactory.getLogger(OAuth2PasswordAuthenticationConverter.class);
     public final String ACCESS_TOKEN_REQUEST_ERROR_URI = "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2";
 
     @Override
     public Authentication convert(HttpServletRequest request) {
+        logger.info("convert");
         //验证是否是密码模式
         String grantType = request.getParameter("grant_type");
         if (!AuthorizationGrantType.PASSWORD.getValue().equals(grantType)) {

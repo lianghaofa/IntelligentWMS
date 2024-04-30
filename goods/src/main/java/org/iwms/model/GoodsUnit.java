@@ -10,7 +10,7 @@ public class GoodsUnit {
     // 商品单位
     private String goodsUnit;
     // 创建者
-    private String creator;
+    private String creater;
     // 用户ID
     private String openid;
     // 是否删除标签，表示该商品单位是否已被删除
