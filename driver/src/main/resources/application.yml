@@ -1,0 +1,16 @@
+server:
+  port: 8008
+
+spring:
+  application:
+    name: security-springboot
+  mvc:
+    view:   #视图解析器
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  datasource:  #连接数据库信息
+    url: jdbc:mysql://localhost:3306/user_db?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
