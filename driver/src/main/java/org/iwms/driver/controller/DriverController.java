@@ -42,9 +42,9 @@ public class DriverController {
     private DriverService driverService;
 
     @RequestMapping(value = "/driver")
-    public String driverPage(int page){
+    public String driverPage(int page, @RequestParam(value = "driver_name__icontains") String name){
 
-        IPage<Driver> usersByPage = driverService.getUsersByPage(page, Constant.DEFAULT_PAGE_SIZE);
+        IPage<Driver> usersByPage = driverService.getUsersByPage(page, name, Constant.DEFAULT_PAGE_SIZE);
 
         //提示具体用户名称登录成功
         List<Driver> drivers = usersByPage.getRecords();

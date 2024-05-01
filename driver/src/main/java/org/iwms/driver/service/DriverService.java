@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.iwms.driver.mapper.DriverMapper;
 import org.iwms.driver.model.Driver;
+import org.iwms.driver.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class DriverService {
     @Autowired
     private DriverMapper driverMapper;
 
-    public IPage<Driver> getUsersByPage(int pageNum, int pageSize) {
+    public IPage<Driver> getUsersByPage(int pageNum, String name, int pageSize) {
         // 创建分页对象
         Page<Driver> page = new Page<>(pageNum, pageSize);
 
@@ -30,6 +31,9 @@ public class DriverService {
         // 指定要返回的字段
         queryWrapper.select("id", "driver_name", "license_plate", "contact", "create_time", "update_time", "creater");
         queryWrapper.eq("is_delete", 0);
+        if (StringUtil.isNotBlank(name)){
+            queryWrapper.like("driver_name", name);
+        }
         // 调用 MyBatis-Plus 的分页查询方法
         return driverMapper.selectPage(page, queryWrapper);
     }

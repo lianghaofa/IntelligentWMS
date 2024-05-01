@@ -1,5 +1,8 @@
 package org.iwms.driver.utils;
 
+/**
+ * @author leung
+ */
 public class StringUtil {
 
     // 将字符串的首字母大写
@@ -8,5 +11,12 @@ public class StringUtil {
             return str;
         }
         return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+    }
+
+    public static boolean isNotBlank(String str) {
+        if (null == str){
+            return false;
+        }
+        return !str.isBlank();
     }
 }
