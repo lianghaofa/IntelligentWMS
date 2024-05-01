@@ -1,5 +1,7 @@
 package org.iwms.driver.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,6 +19,7 @@ import java.util.Date;
 @TableName("`driver`")
 public class Driver {
 
+    @TableId(type = IdType.AUTO)
     private Long id;
     // 驾驶员姓名
     @JsonProperty("driver_name")
@@ -73,11 +76,11 @@ public class Driver {
         this.contact = contact;
     }
 
-    public String getcreater() {
+    public String getCreater() {
         return creater;
     }
 
-    public void setcreater(String creater) {
+    public void setCreater(String creater) {
         this.creater = creater;
     }
 
@@ -89,11 +92,11 @@ public class Driver {
         this.openid = openid;
     }
 
-    public boolean isDelete() {
+    public boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setDelete(boolean delete) {
+    public void setIsDelete(boolean delete) {
         isDelete = delete;
     }
 
