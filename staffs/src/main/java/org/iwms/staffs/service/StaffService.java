@@ -1,12 +1,12 @@
-package org.iwms.staff.service;
+package org.iwms.staffs.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.iwms.staff.mapper.StaffMapper;
-import org.iwms.staff.model.Staff;
-import org.iwms.staff.utils.StringUtil;
+import org.iwms.staffs.mapper.StaffMapper;
+import org.iwms.staffs.model.Staff;
+import org.iwms.staffs.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

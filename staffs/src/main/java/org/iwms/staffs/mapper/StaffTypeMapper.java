@@ -1,9 +1,8 @@
-package org.iwms.staff.mapper;
+package org.iwms.staffs.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.iwms.staff.model.Staff;
-import org.iwms.staff.model.StaffType;
+import org.iwms.staffs.model.StaffType;
 
 /**
  * @author leung

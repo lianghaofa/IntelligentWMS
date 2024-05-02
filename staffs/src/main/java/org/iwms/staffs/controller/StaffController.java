@@ -1,15 +1,15 @@
-package org.iwms.staff.controller;
+package org.iwms.staffs.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import org.iwms.staff.constant.Constant;
-import org.iwms.staff.model.ResponseMsg;
-import org.iwms.staff.model.Staff;
-import org.iwms.staff.model.StaffType;
-import org.iwms.staff.service.StaffService;
-import org.iwms.staff.service.StaffTypeService;
-import org.iwms.staff.utils.ExportCSVUtil;
-import org.iwms.staff.utils.ResponseMsgUtil;
-import org.iwms.staff.utils.StringUtil;
+import org.iwms.common.core.constant.Constant;
+import org.iwms.staffs.model.ResponseMsg;
+import org.iwms.staffs.model.Staff;
+import org.iwms.staffs.model.StaffType;
+import org.iwms.staffs.service.StaffService;
+import org.iwms.staffs.service.StaffTypeService;
+import org.iwms.staffs.utils.ExportCSVUtil;
+import org.iwms.staffs.utils.ResponseMsgUtil;
+import org.iwms.staffs.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

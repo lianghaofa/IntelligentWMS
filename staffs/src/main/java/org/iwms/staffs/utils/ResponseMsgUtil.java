@@ -1,4 +1,4 @@
-package org.iwms.staff.utils;
+package org.iwms.staffs.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

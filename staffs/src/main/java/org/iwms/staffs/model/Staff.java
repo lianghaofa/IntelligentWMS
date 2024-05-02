@@ -1,4 +1,4 @@
-package org.iwms.staff.model;
+package org.iwms.staffs.model;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
