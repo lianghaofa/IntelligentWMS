@@ -1,4 +1,4 @@
-package org.iwms.staff.constant;
+package org.iwms.common.core.constant;
 
 /**
  * @author leung

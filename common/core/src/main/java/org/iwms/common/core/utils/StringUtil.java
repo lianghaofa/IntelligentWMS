@@ -1,4 +1,4 @@
-package org.iwms.staff.utils;
+package org.iwms.common.core.utils;
 
 /**
  * @author leung
