@@ -1,4 +1,4 @@
-package org.iwms.model;
+package org.iwms.supplier.model;
 
 import java.util.Date;
 import java.util.Map;
