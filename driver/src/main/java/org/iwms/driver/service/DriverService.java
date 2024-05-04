@@ -23,7 +23,7 @@ public class DriverService {
     @Autowired
     private DriverMapper driverMapper;
 
-    public IPage<Driver> getUsersByPage(int pageNum, String name, int pageSize) {
+    public IPage<Driver> getDriversByPage(int pageNum, String name, int pageSize) {
         // 创建分页对象
         Page<Driver> page = new Page<>(pageNum, pageSize);
 
@@ -67,12 +67,12 @@ public class DriverService {
     }
 
     public void setDeleteFlagTrue(Driver driver) {
-        driver.setIsDelete(true);
+        driver.setDelete(true);
         driverMapper.updateById(driver);
     }
 
     public void setDeleteFlagFalse(Driver driver) {
-        driver.setIsDelete(false);
+        driver.setDelete(false);
         driverMapper.updateById(driver);
     }
 

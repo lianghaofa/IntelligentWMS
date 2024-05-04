@@ -25,6 +25,7 @@ import java.util.List;
  * @author leung
  */
 @RestController
+@RequestMapping("/driver")
 public class DispatchListController {
 
     /**
@@ -35,7 +36,7 @@ public class DispatchListController {
     private DispatchListService dispatchListService;
 
     @RequestMapping(value = "/dispatchlist")
-    public String driverPage(int page, @RequestParam(value = "dn_code__icontains") String code){
+    public String driverPage(int page, @RequestParam(value = "dn_code__icontains", required = false) String code){
 
         IPage<DispatchDetails> dispatchDetailsByPage = dispatchListService.getByDispatchListsPage(page, code, Constant.DEFAULT_PAGE_SIZE);
 

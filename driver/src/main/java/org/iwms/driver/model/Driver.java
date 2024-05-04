@@ -1,6 +1,7 @@
 package org.iwms.driver.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,7 +35,8 @@ public class Driver {
     // 用户ID
     private String openid;
     // 是否删除标签，表示该驾驶员信息是否已被删除
-    private boolean isDelete;
+    @TableField("is_delete")
+    private boolean delete;
     // 创建时间，记录了驾驶员信息的创建时间
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -92,14 +94,6 @@ public class Driver {
         this.openid = openid;
     }
 
-    public boolean getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(boolean delete) {
-        isDelete = delete;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -114,5 +108,13 @@ public class Driver {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
     }
 }

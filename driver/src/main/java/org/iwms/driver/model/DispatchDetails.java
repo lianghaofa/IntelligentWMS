@@ -3,12 +3,16 @@ package org.iwms.driver.model;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.util.Date;
 /**
  * @author leung
  */
+@Data
+@TableName("`dispatchlist`")
 public class DispatchDetails {
 
     @TableId(type = IdType.AUTO)
