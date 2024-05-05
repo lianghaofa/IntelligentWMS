@@ -1,9 +1,12 @@
 server:
-  port: 8008
+  port: 8003
 
 spring:
   application:
-    name: security-springboot
+    name: supplier-service
+  cloud:
+    nacos:
+      server-addr: http://localhost:8848 # nacos服务地址
   mvc:
     view:   #视图解析器
       prefix: /WEB-INF/view/
@@ -14,3 +17,33 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
 
+ribbon:
+  ReadTimeout:  3000 #请求时间5秒
+  ConnectTimeout: 3000 #连接时间5秒
+
+#与server同级
+logging:
+  level:
+    com.yehongzhi.springcloud.consumer.feign.ProviderClient: debug
+
+#默认是不支持的，所以这里要开启，设置为true
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+#服务名称
+provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 随机
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule #配置规则 重试
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
