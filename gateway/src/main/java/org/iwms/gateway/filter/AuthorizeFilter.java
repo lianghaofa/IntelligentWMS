@@ -12,17 +12,17 @@ import reactor.core.publisher.Mono;
 /**
  * @author leung
  */
-@Component
-public class AuthorizeFilter implements GlobalFilter {
+// @Component
+public class AuthorizeFilter {
 
 
-    @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        // 在这里编写您的拦截逻辑，对请求进行处理
-
-        // 示例：输出请求路径
-        System.out.println("Request Path: " + exchange.getRequest().getPath());
-        // 调用链中的下一个过滤器
-        return chain.filter(exchange);
-    }
+//    @Override
+//    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+//        // 在这里编写您的拦截逻辑，对请求进行处理
+//
+//        // 示例：输出请求路径
+//        System.out.println("Request Path: " + exchange.getRequest().getPath());
+//        // 调用链中的下一个过滤器
+//        return chain.filter(exchange);
+//    }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 10010 # 网关端口
+  port: 9999 # 网关端口
 spring:
   application:
     name: gateway # 服务名称
@@ -11,24 +11,44 @@ spring:
     nacos:
       server-addr: localhost:8848 # Nacos地址
     gateway:
+      # 网关全局跨域配置
+#      globalcors:
+#        # 解决options请求被拦截的问题
+#        add-to-simple-url-handler-mapping: true
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOriginPatterns: "*"
+#            #allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+#            allowCredentials: true
+#            maxAge: 360000 # 这次跨域检测的有效期
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
       routes: # 网关路由配置
-        - id: driver-service # 路由1
+        - id: driver-service # 路由
           uri: lb://driver-service # 路由的目标地址
-          predicates:
+          predicates: # 断言
             - Path=/driver/**
-        - id: supplier-service # 路由2
-          uri: lb://supplier # 路由的目标地址
+        - id: supplier-service
+          uri: lb://supplier-service
           predicates:
             - Path=/supplier/**
-        - id: goods-service # 路由3
-          uri: lb://goods/goods # 路由的目标地址
+        - id: goods-service
+          uri: lb://goods-service
           predicates:
-            - Path=/goods/** # 匹配路径为 /goods/goods
-        - id: stock-service # 路由3
-          uri: lb://stock/goods # 路由的目标地址
+            - Path=/goods/**,/goodsunit/**,/goodsclass/**,/goodscolor/**,/goodsbrand/**,/goodsshape/**,/goodsspecs/**,/goodsorigin/**
+        - id: stock-service
+          uri: lb://stock-service
           predicates:
-            - Path=/stock/** # 匹配路径为 /goods/goods
+            - Path=/stock/**
+        - id: staff-service
+          uri: lb://staff-service
+          predicates:
+            - Path=/staff/**
+        - id: asn-service
+          uri: lb://asn-service
+          predicates:
+            - Path=/asn/**
