@@ -2,6 +2,9 @@ package org.iwms.driver.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.iwms.common.core.exception.ErrorType;
+import org.iwms.common.core.exception.SystemErrorType;
+import org.iwms.common.core.exception.ValidationException;
 import org.iwms.driver.constant.Constant;
 import org.iwms.driver.mapper.DriverMapper;
 import org.iwms.driver.model.Driver;
@@ -10,11 +13,14 @@ import org.iwms.driver.service.DriverService;
 import org.iwms.driver.utils.ExportCSVUtil;
 import org.iwms.driver.utils.ResponseMsgUtil;
 import org.iwms.driver.utils.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +32,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -34,6 +41,7 @@ import java.util.List;
 @RestController
 public class DriverController {
 
+    static final Logger logger = LoggerFactory.getLogger(DriverController.class);
     /**
      * 登录成功执行接口
      * @return
@@ -122,5 +130,39 @@ public class DriverController {
         byte[] bytes = ExportCSVUtil.writeCsvAfterToBytes(tableHeaderArr, cellList);
         ExportCSVUtil.responseSetProperties(fileName,bytes, response);
     }
+
+    @RequestMapping(value = "/driverTransactionalTest")
+    @Transactional
+    public String driverTransactionalTest(@RequestParam("age") int age, @RequestParam("name") String name){
+        try {
+            setDriverName(name);
+            setDriverAge(age);
+        }catch (Exception e){
+            throw new ValidationException(SystemErrorType.SYSTEM_BUSY, "系统完蛋了。");
+        }
+        Random random = new Random();
+        int i = random.nextInt(0, 100);
+        if (i % 2 == 1){
+            logger.info("系统运行得很正常。。。");
+        }else {
+            throw new ValidationException(SystemErrorType.SYSTEM_BUSY, "系统完蛋了。");
+        }
+
+        return ResponseMsgUtil.writeObjectAsJsonString(null);
+    }
+
+    public void setDriverAge(int age){
+        Driver driver = new Driver();
+        driver.setId(1L);
+        driverService.setDriverAge(driver, age, "age");
+    }
+
+
+    public void setDriverName(String name){
+        Driver driver = new Driver();
+        driver.setId(1L);
+        driverService.setDriverName(driver, name);
+    }
+
 
 }

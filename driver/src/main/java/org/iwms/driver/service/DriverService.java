@@ -3,16 +3,24 @@ package org.iwms.driver.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
+import org.iwms.common.core.exception.SystemErrorType;
+import org.iwms.common.core.exception.ValidationException;
 import org.iwms.driver.mapper.DriverMapper;
 import org.iwms.driver.model.Driver;
 import org.iwms.driver.utils.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * @author leung
@@ -20,9 +28,16 @@ import java.util.Map;
 @Service
 public class DriverService {
 
+    static final Logger logger = LoggerFactory.getLogger(DriverService.class);
+
     @Autowired
     private DriverMapper driverMapper;
 
+//    @Autowired
+//    private SqlRunner sqlRunner;
+
+
+    @Transactional
     public IPage<Driver> getDriversByPage(int pageNum, String name, int pageSize) {
         // 创建分页对象
         Page<Driver> page = new Page<>(pageNum, pageSize);
@@ -80,5 +95,74 @@ public class DriverService {
         driver.setCreateTime(new Date());
         driver.setCreater("11");
         driverMapper.insert(driver);
+    }
+
+
+    @Transactional
+    public void setDriverAge(Driver driver, int age, String column) {
+        String tableName = getTableName(driver.getClass());
+        if (StringUtil.isBlank(tableName)){
+            throw new ValidationException(SystemErrorType.SYSTEM_BUSY, "table 名称为空。");
+        }else {
+            String sql = plusDriverAgeSQL(driver, age, column);
+            boolean update = SqlRunner.db().update(sql);
+            if (!update){
+                throw new ValidationException(SystemErrorType.SYSTEM_BUSY, "系统完蛋了。");
+            }
+        }
+    }
+
+
+    public static String getTableName(Class<?> clazz) {
+        TableName tableNameAnnotation = clazz.getAnnotation(TableName.class);
+        if (tableNameAnnotation != null) {
+            return tableNameAnnotation.value();
+        } else {
+            return null;
+        }
+    }
+
+    public static String plusDriverAgeSQL(Driver driver, int age, String column) {
+        Long id = driver.getId();
+        String tableName = getTableName(driver.getClass());
+        String sql = "";
+        if (age == 0){
+            return "";
+        }
+        if (StringUtil.isBlank(tableName)){
+            logger.info("table 名称为空");
+        }else {
+            String setSrt = column;
+            if (age >= 0){
+                setSrt += "=" + column + "+" + age;
+            }else {
+                setSrt += "=" + column + age;
+            }
+            // 如果是正数，不处理。负数的话要加上约束条件
+            String caotrait = "";
+            if (age < 0){
+                caotrait = " and " + column + ">=" + (-age);
+            }
+            sql = "update " + tableName + " set " + setSrt + " where id=" + id + caotrait;
+        }
+        return sql;
+    }
+
+    public static void main(String[] args) {
+        Driver driver = new Driver();
+        driver.setId(1L);
+        System.out.println(plusDriverAgeSQL(driver, -1, "age"));
+    }
+
+    @Transactional
+    public void setDriverName(Driver driver, String name) {
+        Long id = driver.getId();
+        String tableName = getTableName(driver.getClass());
+        if (StringUtil.isBlank(tableName)){
+            logger.info("table 名称为空");
+        }else {
+            String sql = "update " + tableName + " set driver_name='" + name + "' where id=" + id;
+            SqlRunner.db().update(sql);
+        }
     }
 }
