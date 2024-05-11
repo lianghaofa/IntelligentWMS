@@ -6,9 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
 import org.springframework.context.annotation.Primary;
 
 import java.util.Date;
@@ -18,12 +18,17 @@ import java.util.Date;
  */
 @Data
 @TableName("`driver`")
+@ApiModel(value = "司机", description = "查询司机")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Driver {
 
     @TableId(type = IdType.AUTO)
+    @ApiModelProperty(value = "司机id")
     private Long id;
     // 驾驶员姓名
     @JsonProperty("driver_name")
+    @ApiModelProperty(value = "司机名")
     private String driverName;
     // 车牌号
     @JsonProperty("license_plate")

@@ -2,6 +2,7 @@ package org.iwms.driver.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.swagger.annotations.*;
 import org.iwms.common.core.exception.ErrorType;
 import org.iwms.common.core.exception.SystemErrorType;
 import org.iwms.common.core.exception.ValidationException;
@@ -39,6 +40,7 @@ import java.util.Random;
  * @author leung
  */
 @RestController
+@Api(tags = "司机管理控制器", description = "司机模块的基础操作")
 public class DriverController {
 
     static final Logger logger = LoggerFactory.getLogger(DriverController.class);
@@ -50,7 +52,13 @@ public class DriverController {
     private DriverService driverService;
 
     @RequestMapping(value = "/driver")
-    public String driverPage(@RequestParam(value = "page", required = false) String page, @RequestParam(value = "driver_name__icontains", required = false) String name){
+    @ApiOperation(value = "分页查询司机列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "当前页数"),
+            @ApiImplicitParam(name = "driver_name__icontains", value = "每页记录数")
+    })
+    public String driverPage(@ApiParam("第几页") @RequestParam(value = "page", required = false) String page,
+                             @ApiParam("根据司机名称来模糊查询") @RequestParam(value = "driver_name__icontains", required = false) String name){
 
 
 
@@ -67,7 +75,8 @@ public class DriverController {
     }
 
     @PutMapping(value = "/driver/{id}")
-    public String driverEdit(@RequestBody Driver driver, @PathVariable("id") Long id){
+    @ApiOperation("编辑司机数据")
+    public String driverEdit(@ApiParam("司机对象") @RequestBody Driver driver, @ApiParam("对应司机的唯一标识") @PathVariable("id") Long id){
 
         if (null == id){
             return null;
@@ -79,7 +88,8 @@ public class DriverController {
     }
 
     @PostMapping(value = "/driver")
-    public String driverAdd(@RequestBody Driver driver){
+    @ApiOperation("添加司机数据")
+    public String driverAdd(@ApiParam("司机对象") @RequestBody Driver driver){
         if (null == driver){
             return null;
         }
@@ -88,7 +98,8 @@ public class DriverController {
     }
 
     @DeleteMapping(value = "/driver/{id}")
-    public String driverDelete(@PathVariable("id") Long id){
+    @ApiOperation("添加司机记录")
+    public String driverDelete(@ApiParam("司机唯一标识") @PathVariable("id") Long id){
         Driver driver = driverService.driverSelectById(id);
         if (null == driver){
             return null;
@@ -98,6 +109,7 @@ public class DriverController {
     }
 
     @GetMapping(value = "/driver/file")
+    @ApiOperation("下载司机数据")
     public void driverFileDownload(HttpServletResponse response, String lang){
 
         List<Driver> drivers = driverService.getUsers(false); // 假设有一个DriverService来获取数据
