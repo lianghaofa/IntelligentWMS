@@ -19,4 +19,11 @@ public class StringUtil {
         }
         return !str.isEmpty();
     }
+
+    public static boolean isBlank(String str) {
+        if (null == str){
+            return true;
+        }
+        return str.isEmpty();
+    }
 }
