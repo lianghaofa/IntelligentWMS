@@ -2,6 +2,7 @@ package org.iwms.asn.controller;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.core.conditions.interfaces.Func;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.iwms.asn.feign.ProviderClient;
 import org.iwms.asn.model.*;
@@ -67,8 +68,6 @@ public class ASNController {
             transportationFees.add(transportationFee);
             stock.setTransportationFee(transportationFees);
         }
-
-
         responseMsg.setResults(stocks);
         return ResponseMsgUtil.writeObjectAsJsonString(responseMsg);
     }
@@ -98,6 +97,21 @@ public class ASNController {
         logger.info("asnCode={}, creater={}, goodsCode={}, goodsQty={}, supplier={}", asnCode, creater, goodsCode, goodsQty, supplier);
         asnService.createByDetails(asnCode, creater, goodsCode, goodsQty, supplier);
         return ResponseMsgUtil.writeObjectAsJsonString(new HashMap<String, String>() {{ put("detail", "success"); }});
+    }
+
+    @GetMapping(value = "/viewprint/{id}")
+    public String asnViewPrint(@PathVariable(value = "id", required = false) Integer id){
+        //
+        ASNDetail asnDetail = asnService.getASNDetail(id);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("asn_detail", "aa");
+
+        resultMap.put("supplier_detail", "bbb");
+
+        resultMap.put("warehouse_detail", "ccc");
+        logger.info("id={}", id);
+        return ResponseMsgUtil.writeObjectAsJsonString(resultMap);
     }
 
 

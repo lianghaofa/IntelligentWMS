@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author leung
@@ -44,9 +41,8 @@ public class ASNService {
 
     public void createByDetails(String asnCode, String creater, List<String> goodsCodes, List<Double> goodsQtys, String supplier) {
 
-
+        List<String> strList = new ArrayList<>();
         // 只生成一张到货通知书
-
         // 一种货物一条明细
         Assert.isTrue(goodsQtys.size() == goodsQtys.size());
         asnCode = CodeGenerateUtil.generateCodeByDate("ASN");
@@ -55,7 +51,7 @@ public class ASNService {
             Double goodsQty = goodsQtys.get(i);
             ASNDetail asnDetail = new ASNDetail();
             asnDetail.setAsnCode(asnCode);
-            asnDetail.setAsnStatus(0L);
+            asnDetail.setAsnStatus(1L);
             asnDetail.setCreater(creater);
             asnDetail.setGoodsQty(goodsQty);
             asnDetail.setGoodsCode(goodsCode);
@@ -64,7 +60,6 @@ public class ASNService {
             asnDetail.setCreateTime(new Date());
             asnDetailMapper.insert(asnDetail);
         }
-
         ASNList asnList = new ASNList();
         asnList.setAsnCode(asnCode);
         asnList.setCreater(creater);
@@ -73,5 +68,12 @@ public class ASNService {
         asnList.setCreateTime(new Date());
         asnListMapper.insert(asnList);
 
+    }
+
+    public ASNDetail getASNDetail(Integer id) {
+        if (null != id){
+            return null;
+        }
+        return asnDetailMapper.selectById(id);
     }
 }
