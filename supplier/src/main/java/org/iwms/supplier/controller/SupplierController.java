@@ -17,6 +17,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author leung
@@ -39,6 +40,16 @@ public class SupplierController {
         responseMsg.setCount(drivers.size());
         responseMsg.setResults(drivers);
         return ResponseMsgUtil.writeObjectAsJsonString(responseMsg);
+    }
+
+    @RequestMapping("/provider/list")
+    public List<String> list(){
+        List<Supplier> suppliers = supplierService.getSuppliers(false);
+        List<String> resList = new ArrayList<>();
+        for (Supplier supplier : suppliers) {
+            resList.add(supplier.getSupplierName());
+        }
+        return resList;
     }
 
     @PutMapping(value = "/supplier/{id}")
