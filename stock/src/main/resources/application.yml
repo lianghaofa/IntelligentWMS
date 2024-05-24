@@ -1,9 +1,12 @@
 server:
-  port: 8008
+  port: 8007
 
 spring:
   application:
-    name: security-springboot
+    name: stock-service
+  cloud:
+    nacos:
+      server-addr: http://localhost:8848 # nacos服务地址
   mvc:
     view:   #视图解析器
       prefix: /WEB-INF/view/
